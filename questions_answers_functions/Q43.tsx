@@ -4,26 +4,28 @@ const make_car = (manufacturer: string, model: string, ...options: any) => {
     manufacturer,
     model,
   }
+  for (let i = 0, l = options.length; i < l; i++) {
+    let keys = Object.keys(options[i])
+    for (let j = 0, k = keys.length; j < k; j++) {
+      console.log(options[i][keys[j]])
+      //@ts-ignore
+      cars[keys[j]] = options[i][keys[j]]
+    }
+  }
   // for (let option in options) {
-  //   cars[option] = value
+  //   cars[Object.keys(options[option])] = Object.values(options[option])
   // }
 
-  // {
-  //   options.map((option: string, index: number) => (
-  //     <>{(cars[options.value] = option)}</>
-  //   ))
-  // }
-  console.log(options)
+  // console.log(Object.keys(options))
   return JSON.stringify(cars)
 }
-let color, year
 
 const Q43 = () => {
   return (
     <div>
-      {make_car('Honda', 'Civic', (color = 'white'), (year = 2022))}
+      {make_car('Honda', 'Civic', { color: 'white' }, { year: 2022 })}
       <br />
-      {make_car('Toyota', 'Altis', (color = 'Black'), (year = 2021))}
+      {make_car('Toyota', 'Altis', { color: 'white' }, { year: 2021 })}
     </div>
   )
 }
